@@ -3,3 +3,11 @@
 ################################################################################
 
 /src/.vs
+/src/CSUSK.Web/App_Data/Logs
+/src/CSUSK.Web/App_Data/NuGetBackup/20190227-155909
+/src/CSUSK.Web/App_Data/TEMP
+/src/CSUSK.Web/App_Plugins/ModelsBuilder
+/src/CSUSK.Web/bin
+/src/CSUSK.Web/obj/Debug
+/src/CSUSK.Web/Umbraco
+/src/packages
