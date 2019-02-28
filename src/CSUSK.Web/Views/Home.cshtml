@@ -1,5 +1,14 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
 @using ContentModels = Umbraco.Web.PublishedModels;
+@using Newtonsoft.Json.Linq
+@using ClientDependency.Core.Mvc
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
+    Html.RequiresCss("/css/Article-List.css");
+    Html.RequiresCss("/css/Carousel-Hero.css");
 }
+
+@{ Html.RenderPartial("Partials/Content/_MainCarousel"); }
+
+@{ Html.RenderPartial("Partials/Content/_LatestArticles"); }

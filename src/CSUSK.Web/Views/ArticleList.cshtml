@@ -1,5 +1,12 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ArticleList>
 @using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web.Models
+@using System.Collections.Generic;
+@using ClientDependency.Core.Mvc
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
+    Html.RequiresCss("/css/Article-List.css");
 }
+
+@{ Html.RenderPartial("Partials/Content/_LatestArticles"); }

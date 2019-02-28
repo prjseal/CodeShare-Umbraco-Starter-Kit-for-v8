@@ -1,5 +1,50 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Search>
 @using ContentModels = Umbraco.Web.PublishedModels;
+@using ClientDependency.Core.Mvc
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
+    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    var searchQuery = Request.QueryString["q"];
 }
+
+<div class="contact-clean">
+    <form action="@Model.Content.Url" method="GET" id="search">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text" class="form-control col-xs-6" placeholder="Search..." name="q" value="@searchQuery" />
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <button class="btn btn-primary">Search <i class="fa fa-search"></i></button>
+                </div>
+                <div class="col-xs-12">
+                    @{
+                        if (!string.IsNullOrEmpty(searchQuery))
+                        {
+                            var results = Umbraco.Search(searchQuery);
+                            int resultCount = results.Count();
+                            <div class="searchresults">
+                                <p>We found <strong>@resultCount</strong> result@(resultCount != 1 ? "s" : "") when searching for <strong>@searchQuery</strong></p>
+                                @if (results != null && results.Count() > 0)
+                                {
+                                    <ul>
+                                        @{
+                                            foreach (var result in results)
+                                            {
+                                                <li>
+                                                    <h3><a href="@result.Url">@result.Name</a></h3>
+                                                    <p>@result.metaDescription</p>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

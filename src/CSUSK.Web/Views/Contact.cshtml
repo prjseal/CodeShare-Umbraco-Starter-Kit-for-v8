@@ -1,5 +1,18 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Contact>
 @using ContentModels = Umbraco.Web.PublishedModels;
+@using ClientDependency.Core.Mvc
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresCss("/css/Contact-Form-Clean.css");
+    Html.RequiresJs("/scripts/jquery.validate.min.js");
+    Html.RequiresJs("/scripts/jquery.validate.unobtrusive.min.js");
+    Html.RequiresJs("/scripts/jquery.unobtrusive-ajax.min.js");
+    Html.RequiresJs("/scripts/contactForm.js");
 }
+
+<div class="contact-clean">
+    @{ Html.RenderAction("RenderForm", "Contact"); }
+</div>

@@ -1,0 +1,17 @@
+﻿<h2>Error</h2>
+<p>Sorry there was a problem with submitting the form. Please try again.</p>
+
+<h3>Dev tip!</h3>
+<p>This is most likely because of your smtp settings in the web.config file at the root of the site.</p>
+<p>It probably looks like this:</p>
+<pre>
+&lt;system.net&gt;
+&nbsp;&nbsp; &nbsp;&lt;mailSettings&gt;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;smtp from=&quot;noreply@example.com&quot;&gt;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;network host=&quot;127.0.0.1&quot; userName=&quot;username&quot; password=&quot;password&quot; /&gt;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;/smtp&gt;
+&nbsp;&nbsp; &nbsp;&lt;/mailSettings&gt;
+&lt;/system.net&gt;
+</pre>
+
+<p>You will need to either enter some valid smtp settings for sending emails, or you can use something like <a href="https://smtp4dev.codeplex.com/">smtp4dev</a> which acts like an SMTP server on your machine.</p>

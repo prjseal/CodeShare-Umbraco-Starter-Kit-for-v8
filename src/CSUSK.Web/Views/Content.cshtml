@@ -1,5 +1,10 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Content>
 @using ContentModels = Umbraco.Web.PublishedModels;
+@using ClientDependency.Core.Mvc
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
+    Html.RequiresCss("/css/Article-Clean.css");
 }
+
+@{ Html.RenderPartial("Content/_ArticleContent"); }

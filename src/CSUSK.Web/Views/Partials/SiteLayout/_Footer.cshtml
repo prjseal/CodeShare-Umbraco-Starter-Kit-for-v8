@@ -1,0 +1,33 @@
+﻿@inherits UmbracoViewPage
+
+@using Umbraco.Web.Models
+
+@{ 
+    IEnumerable<Link> footerSocialLinks = Model.Value<IEnumerable<Link>>("footerSocialLinks");
+    IEnumerable<Link> footerLinks = Model.Value<IEnumerable<Link>>("footerLinks");
+}
+
+
+<div class="footer-basic">
+    <footer>
+        @if (footerSocialLinks != null && footerSocialLinks.Count() > 0)
+        {
+            <div class="social">
+                @foreach (Link link in footerSocialLinks)
+                {
+                    <a href="@link.Url"  target="@link.Target"><i class="icon fa fa-@link.Name"></i></a>
+                }
+            </div>
+        }
+        @if (footerLinks != null && footerLinks.Count() > 0)
+        {
+            <ul class="list-inline">
+                @foreach (Link link in footerLinks)
+                {
+                    <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                }
+            </ul>
+        }
+        <p class="copyright">CodeShare Starter Kit by Paul Seal from <a href="http://www.codeshare.co.uk/" target="_blank">codeshare.co.uk</a> &copy; @DateTime.Now.Year</p>
+    </footer>
+</div>

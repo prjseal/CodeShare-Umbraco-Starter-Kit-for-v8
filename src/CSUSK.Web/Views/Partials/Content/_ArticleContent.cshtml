@@ -1,0 +1,30 @@
+﻿@inherits UmbracoViewPage
+
+@{ 
+    string mainImageUrl = Umbraco.AssignedContentItem.HasValue("mainImage") ? Umbraco.AssignedContentItem.GetPropertyValue<IPublishedContent>("mainImage").Url : "";
+}
+
+<div class="article-clean">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <div class="intro">
+                    <h1 class="text-center">@Umbraco.Field("title", altFieldAlias: "pageName")</h1>
+                    @if(Umbraco.AssignedContentItem.HasValue("articleDate"))
+                    {
+                        <p class="text-center">
+                            <span class="date">@Umbraco.Field("articleDate", formatAsDate: true)</span>
+                        </p>
+                    }
+                    @if(!string.IsNullOrEmpty(mainImageUrl))
+                    {
+                        <img class="img-responsive" src="@(mainImageUrl)">
+                    }
+                </div>
+                <div class="text">
+                    @Html.GetGridHtml(Umbraco.AssignedContentItem, "contentGrid", "CSUSKGrid")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.contact-clean form#search .btn-primary {
+    padding: 16px;
+    margin-top: 0px;
+}
+
+div.searchresults {
+    margin-top: 20px;
+}
+
+
+@media (max-width:767px) {
+    .contact-clean form#search .btn-primary {
+        margin-top: 18px;
+    }
+}
