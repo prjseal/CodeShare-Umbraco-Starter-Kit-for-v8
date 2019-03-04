@@ -15,3 +15,11 @@
 </pre>
 
 <p>You will need to either enter some valid smtp settings for sending emails, or you can use something like <a href="https://smtp4dev.codeplex.com/">smtp4dev</a> which acts like an SMTP server on your machine.</p>
+
+<p>It can also fail if you don't have these two app setting values in your web.config file:</p>
+<pre>
+&nbsp; &lt;appSettings&gt;
+&nbsp; &nbsp; &lt;add key=&quot;ContactEmailTo&quot; value=&quot;toaddress@test.com&quot;/&gt;
+&nbsp; &nbsp; &lt;add key=&quot;ContactEmailFrom&quot; value=&quot;fromaddress@test.com&quot;/&gt;
+&nbsp; &lt;/appSettings&gt;
+</pre>

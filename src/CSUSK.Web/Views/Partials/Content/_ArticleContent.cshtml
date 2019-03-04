@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoViewPage
 
 @{ 
-    string mainImageUrl = Umbraco.AssignedContentItem.HasValue("mainImage") ? Umbraco.AssignedContentItem.GetPropertyValue<IPublishedContent>("mainImage").Url : "";
+    string mainImageUrl = Model.HasValue("mainImage") ? Model.Value<IPublishedContent>("mainImage").Url : "";
 }
 
 <div class="article-clean">
@@ -9,11 +9,11 @@
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-12">
                 <div class="intro">
-                    <h1 class="text-center">@Umbraco.Field("title", altFieldAlias: "pageName")</h1>
-                    @if(Umbraco.AssignedContentItem.HasValue("articleDate"))
+                    <h1 class="text-center">@((Model.HasProperty("title") && Model.HasValue("title")) ? Model.Value<string>("title") : Model.Name)</h1>
+                    @if(Model.HasValue("articleDate"))
                     {
                         <p class="text-center">
-                            <span class="date">@Umbraco.Field("articleDate", formatAsDate: true)</span>
+                            <span class="date">@(Model.Value<DateTime>("articleDate").ToString("dddd, MMMM dd, yyyy"))</span>
                         </p>
                     }
                     @if(!string.IsNullOrEmpty(mainImageUrl))
@@ -22,7 +22,7 @@
                     }
                 </div>
                 <div class="text">
-                    @Html.GetGridHtml(Umbraco.AssignedContentItem, "contentGrid", "CSUSKGrid")
+                    @Html.GetGridHtml(Model, "contentGrid", "CSUSKGrid")
                 </div>
             </div>
         </div>

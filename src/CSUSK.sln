@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSUSK.Web", "CSUSK.Web\CSUSK.Web.csproj", "{762FC616-5F3A-427A-9747-7947FB7FEDFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSUSK.Core", "CSUSK.Core\CSUSK.Core.csproj", "{C27D3E34-7AFF-4F04-929F-94954F036B7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{762FC616-5F3A-427A-9747-7947FB7FEDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{762FC616-5F3A-427A-9747-7947FB7FEDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{762FC616-5F3A-427A-9747-7947FB7FEDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C27D3E34-7AFF-4F04-929F-94954F036B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C27D3E34-7AFF-4F04-929F-94954F036B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C27D3E34-7AFF-4F04-929F-94954F036B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C27D3E34-7AFF-4F04-929F-94954F036B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

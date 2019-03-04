@@ -13,3 +13,5 @@
 /src/packages
 /src/CSUSK.Web/App_Data/Models
 /src/CSUSK.Web/App_Data/cache
+/src/CSUSK.Core/bin/Debug
+/src/CSUSK.Core/obj/Debug
