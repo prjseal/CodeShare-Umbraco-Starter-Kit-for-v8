@@ -23,7 +23,7 @@
                         if (!string.IsNullOrEmpty(searchQuery))
                         {
                             long resultCount = 0;
-                            var results = Umbraco.ContentQuery.Search(searchQuery, 0, 0, out resultCount);
+                            var results = Umbraco.ContentQuery.Search(searchQuery, string.Empty);
                             <div class="searchresults">
                                 <p>We found <strong>@resultCount</strong> result@(resultCount != 1 ? "s" : "") when searching for <strong>@searchQuery</strong></p>
                                 @if (results != null && results.Count() > 0)
