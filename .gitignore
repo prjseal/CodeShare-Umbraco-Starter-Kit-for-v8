@@ -15,3 +15,8 @@
 /src/CSUSK.Web/App_Data/cache
 /src/CSUSK.Core/bin/Debug
 /src/CSUSK.Core/obj/Debug
+/src/CSUSK.EmptyUmbracoInstall/App_Data/Logs
+/src/CSUSK.EmptyUmbracoInstall/App_Data/NuGetBackup/20190305-154348
+/src/CSUSK.EmptyUmbracoInstall/App_Data/packages
+/src/CSUSK.EmptyUmbracoInstall/App_Data/TEMP
+/src/CSUSK.EmptyUmbracoInstall/Umbraco
