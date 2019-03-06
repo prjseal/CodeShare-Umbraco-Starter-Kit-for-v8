@@ -100,7 +100,7 @@ namespace CSUSK.Core.PackageActions
 
                 //get article 3
                 Guid article3Id = new Guid("4e35da7e-8aa4-40ba-aa11-ee1b91f664bd");
-                IContent article3 = contentService.GetById(article2Id);
+                IContent article3 = contentService.GetById(article3Id);
                 article3.SetValue(MAIN_IMAGE_ALIAS, carouselImage.GetUdi().ToString());
                 contentService.Save(article3);
 
