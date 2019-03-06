@@ -1,5 +1,5 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Search>
-@using ContentModels = Umbraco.Web.PublishedModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
 @using ClientDependency.Core.Mvc
 
 @{
@@ -19,29 +19,25 @@
                     <button class="btn btn-primary">Search <i class="fa fa-search"></i></button>
                 </div>
                 <div class="col-xs-12">
-                    @{
-                        if (!string.IsNullOrEmpty(searchQuery))
-                        {
-                            long resultCount = 0;
-                            var results = Umbraco.ContentQuery.Search(searchQuery, string.Empty);
-                            <div class="searchresults">
-                                <p>We found <strong>@resultCount</strong> result@(resultCount != 1 ? "s" : "") when searching for <strong>@searchQuery</strong></p>
-                                @if (results != null && results.Count() > 0)
-                                {
-                                    <ul>
-                                        @{
-                                            foreach (var result in results)
-                                            {
-                                                <li>
-                                                    <h3><a href="@result.Content.Url">@result.Content.Name</a></h3>
-                                                    <p>@(result.Content.Value<string>("metaDescription"))</p>
-                                                </li>
-                                            }
-                                        }
-                                    </ul>
-                                }
-                            </div>
-                        }
+                    @if (!string.IsNullOrWhiteSpace(searchQuery))
+                    {
+                        var results = Umbraco.ContentQuery.Search(searchQuery, string.Empty);
+                        long resultCount = results != null && results.Any() ? results.Count() : 0;
+                        <div class="searchresults">
+                            <p>We found <strong>@resultCount</strong> result@(resultCount != 1 ? "s" : "") when searching for <strong>@searchQuery</strong></p>
+                            @if (resultCount > 0)
+                            {
+                                <ul>
+                                    @foreach (var result in results)
+                                    {
+                                        <li>
+                                            <h3><a href="@result.Content.Url">@result.Content.Name</a></h3>
+                                            <p>@(result.Content.Value<string>("metaDescription"))</p>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
                     }
                 </div>
             </div>

@@ -1,18 +1,14 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.PrettyLink>
-@using ContentModels = Umbraco.Web.PublishedModels;
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
 @using Umbraco.Web.Models
 
 @{
     Layout = null;
-    RelatedLinks relatedLinks = Umbraco.AssignedContentItem.GetPropertyValue<RelatedLinks>("linkTarget");
-    RelatedLink prettyLink = null;
-    if (relatedLinks != null && relatedLinks.Count() > 0)
-    {
-        prettyLink = relatedLinks.FirstOrDefault();
-    }
 
-    if (prettyLink != null)
+    var links = Model.Value<IEnumerable<Link>>("linkTarget");
+    if (links != null && links.Any())
     {
-        Response.RedirectPermanent(prettyLink.Link);
+        var prettyLink = links.FirstOrDefault();
+        Response.RedirectPermanent(prettyLink.Url);
     }
 }
