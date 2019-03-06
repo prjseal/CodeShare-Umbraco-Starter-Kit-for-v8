@@ -8,6 +8,6 @@
     Html.RequiresCss("/css/Carousel-Hero.css");
 }
 
-@{ Html.RenderPartial("Partials/Content/_MainCarousel"); }
+@Html.CachedPartial("Partials/Content/_MainCarousel", Model, 3600)
 
-@{ Html.RenderPartial("Partials/Content/_LatestArticles"); }
+@Html.CachedPartial("Partials/Content/_LatestArticles", Model, 3600)

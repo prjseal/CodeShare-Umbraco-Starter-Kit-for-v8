@@ -1,11 +1,11 @@
-﻿@inherits UmbracoViewPage<ContentModels.Home>
+﻿@inherits UmbracoViewPage
 @using ContentModels = Umbraco.Web.PublishedModels;
 
 @using Umbraco.Web.Models
 
 @{
     string carouselId = "mainCarousel";
-    var carousel = Model.MainCarousel;
+    var carousel = Model.Value<IEnumerable<IPublishedElement>>(carouselId);
 }
 
 @if (carousel != null && carousel.Any())
@@ -14,7 +14,7 @@
         <div class="carousel-inner" role="listbox">
             @{
                 int slideCount = 0;
-                foreach (var slide in carousel.Where(x => !x.Value<bool>("umbracoNaviHide")))
+                foreach (var slide in carousel)
                 {
                     string title = slide.Value<string>("slideTitle");
                     string subtitle = slide.HasValue("slideSubtitle") ? slide.Value<string>("slideSubtitle") : "";

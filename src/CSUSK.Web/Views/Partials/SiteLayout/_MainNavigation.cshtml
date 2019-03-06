@@ -64,7 +64,9 @@
         }
         else
         {
-            <li role="presentation"><a href="@prettyLink.Url" target="@prettyLink.Target">@prettyLink.Name</a></li>
+            <li role="presentation">
+                <a href="@prettyLink.Url" target="@prettyLink.Target">@prettyLink.Name</a>
+            </li>
         }
         
     }
@@ -72,7 +74,7 @@
 
 @helper RenderPageLink(IPublishedContent item)
 {
-    bool isActive = Umbraco.AssignedContentItem.Id == item.Id;
+    bool isActive = Model.Id == item.Id;
 
     if (!item.Value<bool>("disableDropdown") && item.Children != null && item.Children.Where(x => x.IsVisible()).Any())
     {

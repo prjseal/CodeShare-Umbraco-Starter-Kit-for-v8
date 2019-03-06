@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoViewPage
 
 @{ 
-    string mainImageUrl = Model.HasValue("mainImage") ? Model.Value<IPublishedContent>("mainImage").GetCropUrl(945, 531) : "";
+    string mainImageUrl = Model.HasValue("mainImage") ? Model.Value<IPublishedContent>("mainImage").GetCropUrl(945, 400) : "";
 }
 
 <div class="article-clean">
