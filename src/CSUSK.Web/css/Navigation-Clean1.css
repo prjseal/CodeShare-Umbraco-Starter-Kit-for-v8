@@ -11,6 +11,11 @@
     box-shadow: 0 2px 10px 0 #ddd;
 }
 
+nav ul li.active a {
+    color: #337ab7 !important;
+    font-weight: bold;
+}
+
 @media (max-width:767px) {
   .navigation-clean {
     padding-top:0;

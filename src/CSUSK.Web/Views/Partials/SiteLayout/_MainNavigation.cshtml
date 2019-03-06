@@ -3,7 +3,7 @@
 @using Umbraco.Web.Models
 
 @{ 
-    IPublishedContent homePage = Umbraco.AssignedContentItem.AncestorOrSelf("home");
+    IPublishedContent homePage = Model.Root();
     IEnumerable<IPublishedContent> navigationPages = homePage.Children(x => x.IsVisible());
 }
 

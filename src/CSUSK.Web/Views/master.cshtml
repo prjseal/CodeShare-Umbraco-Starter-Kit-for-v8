@@ -24,6 +24,9 @@
         Html.RequiresCss("/css/styles.css");
 
         //scripts
+        Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
+        Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
+
         Html.RequiresJs("/scripts/navigationMenu.js");
     }
 
@@ -32,14 +35,12 @@
 </head>
 <body>
     <div style="margin-top:70px;"></div>
-    @{ Html.RenderPartial("SiteLayout/_MainNavigation"); }
+    @Html.CachedPartial("SiteLayout/_MainNavigation", Model, 3600)
 
     @RenderBody()
-        
-    @{ Html.RenderPartial("SiteLayout/_Footer"); }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @Html.CachedPartial("SiteLayout/_Footer", Model, 3600)
+
     @Html.RenderJsHere()
 </body>
 </html>
