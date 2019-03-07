@@ -4,7 +4,7 @@ A Starter Kit for Umbraco v8
 
 [Demo site here](http://codesharestarterkit.azurewebsites.net)
 
-[Download the package on Our Umbraco here](https://our.umbraco.org/projects/starter-kits/codeshare-starter-kit/)
+[Download the package on Our Umbraco here](https://our.umbraco.com/projects/starter-kits/codeshare-starter-kit/)
 
 ## What is included?
 In this starter kit you will see examples of how to do certain things in Umbraco such as:
@@ -17,3 +17,7 @@ In this starter kit you will see examples of how to do certain things in Umbraco
 
 ## Want to learn more?
 If you enjoy using this starter kit and would like to learn more about how I create Umbraco sites, visit my website codeshare.co.uk or check subscribe to my YouTube channel.
+
+## Umbraco Backoffice Login Details
+Username: admin@admin.com
+Password: 1234567890
