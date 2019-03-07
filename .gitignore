@@ -20,3 +20,4 @@
 /src/CSUSK.EmptyUmbracoInstall/App_Data/packages
 /src/CSUSK.EmptyUmbracoInstall/App_Data/TEMP
 /src/CSUSK.EmptyUmbracoInstall/Umbraco
+*.user
