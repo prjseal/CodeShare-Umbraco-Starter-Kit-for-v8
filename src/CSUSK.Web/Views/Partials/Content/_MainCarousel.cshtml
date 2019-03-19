@@ -18,7 +18,7 @@
                 {
                     string title = slide.Value<string>("slideTitle");
                     string subtitle = slide.HasValue("slideSubtitle") ? slide.Value<string>("slideSubtitle") : "";
-                    string imageUrl = slide.HasValue("slideImage") ? slide.Value<IPublishedContent>("slideImage").GetCropUrl(1920,1080) : "/img/carousel.jpg";
+                    string imageUrl = slide.Value<IPublishedContent>("slideImage")?.GetCropUrl(1920,1080) ?? "/img/carousel.jpg";
                     IEnumerable<Link> links = slide.Value<IEnumerable<Link>>("slideLink");
                     Link link = links != null ? links.FirstOrDefault() : null;
 

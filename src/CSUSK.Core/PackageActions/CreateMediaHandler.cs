@@ -1,20 +1,14 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
-using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.PackageActions;
-using Umbraco.Core.PropertyEditors.ValueConverters;
 using Umbraco.Core.Services;
-using Umbraco.Web;
 
 namespace CSUSK.Core.PackageActions
 {

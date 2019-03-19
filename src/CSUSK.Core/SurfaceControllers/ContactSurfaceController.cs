@@ -1,8 +1,8 @@
-﻿using Umbraco.Web.Mvc;
-using CSUSK.Core.ViewModels;
+﻿using CSUSK.Core.ViewModels;
 using System.Net.Mail;
 using System.Reflection;
 using System.Web.Mvc;
+using Umbraco.Web.Mvc;
 
 namespace CSUSK.Core.SurfaceControllers
 {

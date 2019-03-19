@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoViewPage
 
 @{ 
-    string mainImageUrl = Model.HasValue("mainImage") ? Model.Value<IPublishedContent>("mainImage").GetCropUrl(945, 400) : "";
+    string mainImageUrl = Model.Value<IPublishedContent>("mainImage")?.GetCropUrl(945, 400) ?? "";
 }
 
 <div class="article-clean">
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-12">
                 <div class="intro">
-                    <h1 class="text-center">@((Model.HasProperty("title") && Model.HasValue("title")) ? Model.Value<string>("title") : Model.Name)</h1>
+                    <h1 class="text-center">@(Model.HasValue("title") ? Model.Value<string>("title") : Model.Name)</h1>
                     @if(Model.HasValue("articleDate"))
                     {
                         <p class="text-center">

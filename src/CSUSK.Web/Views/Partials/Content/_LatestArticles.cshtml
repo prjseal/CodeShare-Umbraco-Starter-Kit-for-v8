@@ -20,7 +20,7 @@
             <div class="row articles">
                 @foreach (IPublishedContent item in articles.OrderByDescending(x => x.Value<DateTime>("articleDate")).Take(itemsToShow))
                 {
-                    string imageUrl = item.HasValue("mainImage") ? item.Value<IPublishedContent>("mainImage").GetCropUrl(720,455) : "/img/carousel.jpg";
+                    string imageUrl = item.Value<IPublishedContent>("mainImage")?.GetCropUrl(720,455) ?? "/img/carousel.jpg";
                     string title = item.HasValue("title") ? item.Value<string>("title") : item.Name;
                     string description = item.Value<string>("metaDescription");
 
