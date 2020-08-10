@@ -16,3 +16,11 @@
 };
 
 contactForm.init();
+
+function showSendButton() {
+    $('.contact-clean form .btn-primary').prop('disabled', false);
+}
+
+function hideSendButton() {
+    $('.contact-clean form .btn-primary').prop('disabled', true);
+}

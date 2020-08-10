@@ -14,5 +14,20 @@ namespace CSUSK.Core.ViewModels
         [Required]
         [MaxLength(500, ErrorMessage = "Your message must be 500 characters or less")]
         public string Message { get; set; }
+
+        public string SiteKey { get; set; }
+
+        public string SendButtonDisabled
+        {
+            get
+            {
+                if(!string.IsNullOrEmpty(SiteKey))
+                {
+                    return "disabled";
+                }
+                return string.Empty;
+            }
+        }
+
     }
 }
