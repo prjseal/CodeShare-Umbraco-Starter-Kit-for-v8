@@ -1,7 +1,13 @@
-﻿using CSUSK.Core.ViewModels;
+﻿using CSUSK.Core.Models;
+using CSUSK.Core.ViewModels;
+using System;
+using System.IO;
+using System.Net;
 using System.Net.Mail;
 using System.Reflection;
+using System.Text;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Umbraco.Web.Mvc;
 
 namespace CSUSK.Core.SurfaceControllers
@@ -16,7 +22,7 @@ namespace CSUSK.Core.SurfaceControllers
         [HttpGet]
         public ActionResult RenderForm()
         {
-            ContactViewModel model = new ContactViewModel();
+            ContactViewModel model = new ContactViewModel() { SiteKey = CaptchaSiteKey };
             return PartialView(GetViewPath("_ContactForm"), model);
         }
 
@@ -32,9 +38,62 @@ namespace CSUSK.Core.SurfaceControllers
             bool success = false;
             if (ModelState.IsValid)
             {
+                if(!string.IsNullOrEmpty(CaptchaSecretKey))
+                {
+                    string captchaResponse = Request["g-recaptcha-response"];
+                    if(!CaptchaIsValid(captchaResponse))
+                    {
+                        ModelState.AddModelError("", "Recaptcha response is invalid");
+                    }
+                }
+
                 success = SendEmail(model);
             }
             return PartialView(GetViewPath(success ? "_Success" : "_Error"));
+        }
+
+        private bool CaptchaIsValid(string captchaResponse)
+        {
+            string Response = Request["g-recaptcha-response"];//Getting Response String Append to Post Method
+            bool Valid = false;
+            //Request to Google Server
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(CaptchaSiteVerifyApiUrl);
+
+            string postData = $"secret={CaptchaSecretKey}&response={captchaResponse}";
+
+            byte[] send = Encoding.Default.GetBytes(postData);
+            req.Method = "POST";
+            req.ContentType = "application/x-www-form-urlencoded";
+            req.ContentLength = send.Length;
+
+            Stream sout = req.GetRequestStream();
+            sout.Write(send, 0, send.Length);
+            sout.Flush();
+            sout.Close();
+                        
+            try
+            {
+                //Google recaptcha Response
+                using (WebResponse wResponse = req.GetResponse())
+                {
+                    using (StreamReader readStream = new StreamReader(wResponse.GetResponseStream()))
+                    {
+                        string jsonResponse = readStream.ReadToEnd();
+
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        RecaptchaVerifyModel model = js.Deserialize<RecaptchaVerifyModel>(jsonResponse);// Deserialize Json
+
+                        Valid = Convert.ToBoolean(model.success);
+                    }
+                }
+
+                return Valid;
+            }
+            catch (WebException ex)
+            {
+                throw ex;
+            }
         }
 
         public bool SendEmail(ContactViewModel model)
@@ -60,5 +119,36 @@ namespace CSUSK.Core.SurfaceControllers
                 return false;
             }
         }
+
+        public string CaptchaSiteKey
+        {
+            get
+            {
+                return System.Web.Configuration.WebConfigurationManager.AppSettings["ContactCaptchaSiteKey"];
+            }
+        }
+
+        public string CaptchaSecretKey
+        {
+            get
+            {
+                return System.Web.Configuration.WebConfigurationManager.AppSettings["ContactCaptchaSecretKey"];
+            }
+        }
+
+        public string CaptchaSiteVerifyApiUrl
+        {
+            get
+            {
+                string siteverifyApiUrl = "https://www.google.com/recaptcha/api/siteverify";
+                var overrideApiUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["CaptchaSiteVerifyApiUrl"];
+                if(!string.IsNullOrEmpty(overrideApiUrl))
+                {
+                    siteverifyApiUrl = overrideApiUrl;
+                }
+                return siteverifyApiUrl;
+            }
+        }
+
     }
 }

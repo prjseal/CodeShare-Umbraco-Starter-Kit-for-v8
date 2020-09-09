@@ -3,32 +3,41 @@
 @using CSUSK.Core.ViewModels
 @using CSUSK.Core.SurfaceControllers
 
-<div id="form-outer">
-    @using (Ajax.BeginForm("SubmitForm", "Contact", new AjaxOptions()
-    {
-        UpdateTargetId = "form-result",
-        HttpMethod = "POST",
-        InsertionMode = InsertionMode.Replace,
-        OnSuccess = "contactForm.showResult",
-        OnFailure = "contactForm.showResult"
-    }, new { id = "contact-form" }))
-    {
-        <div class="form-group">
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
-            @Html.ValidationMessageFor(m => m.Name)
-        </div>
-        <div class="form-group">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
-            @Html.ValidationMessageFor(m => m.Email)
-        </div>
-        <div class="form-group">
-            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Message", rows = "14" })
-            @Html.ValidationMessageFor(m => m.Message)
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit">send </button>
-        </div>
-        <p>View the source code for the <a target="_blank" href="https://github.com/prjseal/CodeShare-Umbraco-Starter-Kit-for-v8/blob/master/src/CSUSK.Core/SurfaceControllers/ContactSurfaceController.cs">SurfaceController</a> and <a target="_blank" href="https://github.com/prjseal/CodeShare-Umbraco-Starter-Kit-for-v8/blob/master/src/CSUSK.Core/ViewModels/ContactViewModel.cs">ViewModel</a></p>
-    }
-</div>
+    <div id="form-outer">
+        @using (Ajax.BeginForm("SubmitForm", "Contact", new AjaxOptions()
+        {
+            UpdateTargetId = "form-result",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            OnSuccess = "contactForm.showResult",
+            OnFailure = "contactForm.showResult"
+        }, new { id = "contact-form" }))
+        {
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div class="form-group">
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Message", rows = "14" })
+                @Html.ValidationMessageFor(m => m.Message)
+            </div>
+            if(!string.IsNullOrEmpty(Model.SiteKey))
+            {
+                <div class="form-group">
+                    <div class="g-recaptcha" data-callback="showSendButton" data-expired-callback="hideSendButton" data-sitekey="@Model.SiteKey"></div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.ValidationSummary(true)
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" @Model.SendButtonDisabled>send </button>
+            </div>
+            <p>View the source code for the <a target="_blank" href="https://github.com/prjseal/CodeShare-Umbraco-Starter-Kit-for-v8/blob/master/src/CSUSK.Core/SurfaceControllers/ContactSurfaceController.cs">SurfaceController</a> and <a target="_blank" href="https://github.com/prjseal/CodeShare-Umbraco-Starter-Kit-for-v8/blob/master/src/CSUSK.Core/ViewModels/ContactViewModel.cs">ViewModel</a></p>
+        }
+    </div>
 <div id="form-result"></div>

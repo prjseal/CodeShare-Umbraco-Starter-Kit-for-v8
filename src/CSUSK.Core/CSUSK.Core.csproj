@@ -230,6 +230,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\RecaptchaVerifyModel.cs" />
     <Compile Include="PackageActions\CreateMediaHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurfaceControllers\ContactSurfaceController.cs" />
