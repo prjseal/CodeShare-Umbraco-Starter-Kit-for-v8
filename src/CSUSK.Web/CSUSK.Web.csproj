@@ -490,7 +490,6 @@
     <Content Include="Views\Partials\SiteLayout\_MetaData.cshtml" />
     <Content Include="Views\master.cshtml" />
     <Content Include="Views\Partials\Grid\CSUSKGrid.cshtml" />
-    <Content Include="Views\Partials\Contact\_CaptchaError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

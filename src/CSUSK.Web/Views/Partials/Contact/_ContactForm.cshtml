@@ -31,7 +31,9 @@
                     <div class="g-recaptcha" data-callback="showSendButton" data-expired-callback="hideSendButton" data-sitekey="@Model.SiteKey"></div>
                 </div>
             }
-
+            <div class="form-group">
+                @Html.ValidationSummary(true)
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" @Model.SendButtonDisabled>send </button>
             </div>

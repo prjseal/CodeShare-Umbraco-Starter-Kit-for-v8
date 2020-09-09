@@ -43,7 +43,7 @@ namespace CSUSK.Core.SurfaceControllers
                     string captchaResponse = Request["g-recaptcha-response"];
                     if(!CaptchaIsValid(captchaResponse))
                     {
-                        return PartialView(GetViewPath("_CaptchaError"));
+                        ModelState.AddModelError("", "Recaptcha response is invalid");
                     }
                 }
 
@@ -58,7 +58,7 @@ namespace CSUSK.Core.SurfaceControllers
             bool Valid = false;
             //Request to Google Server
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://www.google.com/recaptcha/api/siteverify");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(CaptchaSiteVerifyApiUrl);
 
             string postData = $"secret={CaptchaSecretKey}&response={captchaResponse}";
 
@@ -133,6 +133,20 @@ namespace CSUSK.Core.SurfaceControllers
             get
             {
                 return System.Web.Configuration.WebConfigurationManager.AppSettings["ContactCaptchaSecretKey"];
+            }
+        }
+
+        public string CaptchaSiteVerifyApiUrl
+        {
+            get
+            {
+                string siteverifyApiUrl = "https://www.google.com/recaptcha/api/siteverify";
+                var overrideApiUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["CaptchaSiteVerifyApiUrl"];
+                if(!string.IsNullOrEmpty(overrideApiUrl))
+                {
+                    siteverifyApiUrl = overrideApiUrl;
+                }
+                return siteverifyApiUrl;
             }
         }
 
